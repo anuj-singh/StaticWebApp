@@ -1,0 +1,31 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  deployment_token: '3b99424a1bed70a60f5140176b25d0d81e6e73b0ce4948fb58cef2968d13192b01-a94f254d-e7a6-4f0f-8e4a-d12c0f5e3da7000241309a1b8d00' # Set this in Azure DevOps pipeline UI as a secret variable
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '18.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    npm install
+  displayName: 'Install dependencies'
+
+# Uncomment if you add tests in the future
+# - script: |
+#     npm test
+#   displayName: 'Run tests'
+
+- task: AzureStaticWebApp@0
+  inputs:
+    app_location: '.'              # Location of your app source code
+    output_location: '.'           # For static HTML, use '.'
+    api_location: ''               # Leave empty if you have no API
+    azure_static_web_apps_api_token: '$(deployment_token)' # Set this as a pipeline secret variable
+  displayName: 'Deploy to Azure Static Web Apps'
