@@ -1,2 +1,5 @@
 {
+  "scripts": {
+    "build": "echo 'No build needed for static site'"
+  }
 }
