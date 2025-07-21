@@ -5,7 +5,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  deployment_token: '3b99424a1bed70a60f5140176b25d0d81e6e73b0ce4948fb58cef2968d13192b01-a94f254d-e7a6-4f0f-8e4a-d12c0f5e3da7000241309a1b8d00' # Set this in Azure DevOps pipeline UI as a secret variable
+  deployment_token: '' # Set this in Azure DevOps pipeline UI as a secret variable
 
 steps:
 - task: NodeTool@0
