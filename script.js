@@ -74,5 +74,16 @@ if (typeof module !== 'undefined' && module.exports) {
 } else {
     document.addEventListener("DOMContentLoaded", function() {
         populateWeatherCards();
+        // Add refresh button logic
+        const refreshBtn = document.getElementById("refreshWeatherBtn");
+        if (refreshBtn) {
+            refreshBtn.addEventListener("click", function() {
+                // Clear weather cache
+                for (const key in weatherCache) {
+                    delete weatherCache[key];
+                }
+                populateWeatherCards();
+            });
+        }
     });
 }
